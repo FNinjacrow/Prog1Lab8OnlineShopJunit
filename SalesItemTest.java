@@ -66,6 +66,8 @@ public class SalesItemTest
     {
         SalesItem salesIte1 = new SalesItem("Java For Complete Idiots, Vol 2", 19900);
         assertEquals(false, salesIte1.addComment("Joshua Black", "Not worth the money. The font is too small.", -5));
+        assertEquals(false, salesIte1.addComment("Joshua Black", "Not worth the money. The font is too small.", 6));
+        assertEquals(false, salesIte1.addComment("Joshua Black", "Not worth the money. The font is too small.", 0));    
     }
 
     /**
@@ -85,7 +87,31 @@ public class SalesItemTest
         SalesItem salesIte1 = new SalesItem("Brain Surgery for Dummies.", 9899);
         assertEquals(true, salesIte1.addComment("Fred", "Great - I perform brain surgery every week now!", 4));
     }
+
+    @Test
+    public void NumberTest()
+    {
+        SalesItem salesIte1 = new SalesItem("e", 1);
+        salesIte1.showInfo();
+    }
+    
+    @Test
+    public void testGetAuthorAndRating()
+    {
+        Comment comment1 = new Comment("Author", "Comment", 2);
+        assertEquals("Author", comment1.getAuthor());
+        assertEquals(2, comment1.getRating());
+    }
+    
+    @Test
+    public void getUpvoteCount()
+    {
+        Comment comment1 = new Comment("Author", "Comment", 2);
+        comment1.upvote();
+        assertEquals(1, comment1.getVoteCount());
+    }
 }
+
 
 
 
